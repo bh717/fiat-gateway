@@ -1,0 +1,34 @@
+{
+  "name": "fiat-gateway-ea-paypal",
+  "version": "0.1.0",
+  "description": "Paypal external adapter for Fiat Gateway",
+  "author": "hatch@tuta.io",
+  "license": "GPL-3.0-only",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist/",
+    "deploy-staging": "yarn build && sls deploy -s staging --verbose",
+    "lint": "tslint -p .",
+    "run-local-send-payout": "scripts/run-local-send-payout",
+    "test": "scripts/test"
+  },
+  "dependencies": {
+    "eth-crypto": "^1.5.0",
+    "ipfs-http-client": "^39.0.2",
+    "node-fetch": "^2.6.0",
+    "paypal-rest-sdk": "^1.8.1",
+    "web3": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.4",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.7",
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "mocha": "^6.2.2",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "typescript": "3.6.3"
+  }
+}

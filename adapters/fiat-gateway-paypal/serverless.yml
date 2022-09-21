@@ -1,0 +1,27 @@
+service: fiat-gateway-ea-paypal
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  profile: chatch-serverless
+  region: ap-south-1
+  runtime: nodejs10.x
+  stage: dev
+  memorySize: 128
+  timeout: 15
+
+functions:
+  adapter:
+    handler: dist/index.handler
+    events:
+      - http:
+          method: get
+          path: "/"
+    environment:
+      CLIENT_ID: ${ssm:/${self:custom.stage}/paypal-client-id}
+      CLIENT_SECRET: ${ssm:/${self:custom.stage}/paypal-client-secret}
+      PUBLIC_KEY: ${ssm:/${self:custom.stage}/paypal-adapter-public-key}
+      PRIVATE_KEY: ${ssm:/${self:custom.stage}/paypal-adapter-private-key}
+      STAGE: ${self:custom.stage}

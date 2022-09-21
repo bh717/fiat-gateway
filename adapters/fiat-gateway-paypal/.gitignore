@@ -1,0 +1,5 @@
+test.env
+dist
+node_modules
+.serverless
+tsconfig.tsbuildinfo
